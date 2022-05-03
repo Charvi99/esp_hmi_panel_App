@@ -1,0 +1,63 @@
+﻿<UserControl x:Class="SmartHomeApp.MyUserControl.Extra"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SmartHomeApp.MyUserControl"
+             mc:Ignorable="d" 
+             d:DesignHeight="100" d:DesignWidth="74">
+    <Grid>
+        <Border BorderBrush="Black"
+                BorderThickness="0"
+                Margin="5"
+                Background="#E9E6E6"
+                CornerRadius="10">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*" />
+                    <RowDefinition Height="3*" />
+                </Grid.RowDefinitions>
+
+                <Border x:Name="Headder"
+                        Grid.ColumnSpan="2"
+                        CornerRadius="10,10,0,0"
+                        Background="#B6D461" />
+                <TextBlock x:Name="RoomName"
+                           FontSize="20"
+                           Margin="0,-5,0,0"
+                           Text="a"
+                           TextAlignment="Center"
+                           Grid.Row="0"
+                           Foreground="WhiteSmoke"
+                           VerticalAlignment="Stretch"
+                           HorizontalAlignment="Center" />
+                <Grid Grid.Column="0"
+                      Grid.Row="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="2*" />
+                        <RowDefinition Height="1*" />
+                    </Grid.RowDefinitions>
+
+                    <Image x:Name="bulb"
+                           Grid.Row="0"
+                           Margin="5"
+                           Source="/img/Bulb_b.png">
+                    </Image>
+                    <TextBlock x:Name="bulbInfo"
+                               FontSize="18"
+                               Text="a"
+                               Margin="0,-5,0,0"
+                               Grid.Row="1"
+                               Foreground="#A39C9C"
+                               VerticalAlignment="Stretch"
+                               TextAlignment="Center"
+                               HorizontalAlignment="Center" />
+
+                </Grid>
+            </Grid>
+        </Border>
+    </Grid>
+</UserControl>

@@ -1,0 +1,35 @@
+﻿<Window x:Class="SmartHomeApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SmartHomeApp"
+        xmlns:myUserC="clr-namespace:SmartHomeApp.MyUserControl"
+        mc:Ignorable="d"
+        Title="MainWindow"
+        Height="600"
+        Width="auto"
+        Background="#E9E6E6">
+    <Grid x:Name="mainGrid"
+          Height="auto">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" 
+                           MinHeight="450"/>
+            <RowDefinition Height="*"
+                           MinHeight="100" />
+        </Grid.RowDefinitions>
+        <TextBox Grid.Row="1"
+                 x:Name="txtReceiveMessage"
+                 Margin="15,0,15,10"
+                 BorderBrush="Transparent"
+                 Padding="10"
+                 Foreground="#817777">
+            <TextBox.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius"
+                            Value="10" />
+                </Style>
+            </TextBox.Resources>
+        </TextBox>
+    </Grid>
+</Window>

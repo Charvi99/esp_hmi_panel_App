@@ -1,0 +1,1064 @@
+﻿<UserControl x:Class="SmartHomeApp.MyUserControl.House"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:SmartHomeApp.MyUserControl"
+             mc:Ignorable="d"
+             d:DesignHeight="450"
+             d:DesignWidth="800"
+             Background="#E9E6E6">
+    <Border Margin="10"
+            Background="Transparent"
+            CornerRadius="15">
+        <Grid x:Name="mainGrid">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="4*" />
+                <ColumnDefinition Width="1.1*" />
+            </Grid.ColumnDefinitions>
+            <Border x:Name="mainPanel"
+                    Grid.Column="0"
+                    Margin="5"
+                    CornerRadius="10"
+                    Background="White">
+                <Grid x:Name="roomGrid"
+                      Margin="5">
+
+                </Grid>
+            </Border>
+            <Border x:Name="roomPanel"
+                    Grid.Column="0"
+                    Margin="10,5"
+                    CornerRadius="10"
+                    Background="White">
+                <Grid x:Name="itemGrid"
+                      Margin="20,5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="20" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="20" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="20" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Row="0"
+                               Text="LIGHTS"
+                               Margin="-5,0"
+                               VerticalAlignment="Center"
+                               FontSize="14"
+                               FontWeight="Medium"
+                               Foreground="#A39C9C" />
+                    <TextBlock Grid.Row="2"
+                               Text="SOCKETS"
+                               Margin="-5,0"
+                               VerticalAlignment="Center"
+                               FontSize="14"
+                               FontWeight="Medium"
+                               Foreground="#A39C9C" />
+                    <TextBlock Grid.Row="4"
+                               Text="EXTRA"
+                               Margin="-5,0"
+                               VerticalAlignment="Center"
+                               FontSize="14"
+                               FontWeight="Medium"
+                               Foreground="#A39C9C" />
+                </Grid>
+            </Border>
+            <Border x:Name="sidePanel"
+                    Grid.Column="1"
+                    Margin="5"
+                    CornerRadius="10"
+                    Background="White">
+
+                <Grid>
+                    <Grid x:Name="sidePanel_overview"
+                          Visibility="Hidden">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="65" />
+                            <RowDefinition Height="3*" />
+                            <RowDefinition Height="3*" />
+                            <RowDefinition Height="2*" />
+                        </Grid.RowDefinitions>
+
+                        <Border x:Name="Headder"
+                                Grid.ColumnSpan="2"
+                                CornerRadius="10,10,0,0"
+                                Background="#B6D461" />
+                        <TextBlock x:Name="RoomName"
+                                   FontSize="30"
+                                   Text="HOUSE"
+                                   TextAlignment="Center"
+                                   FontWeight="Bold"
+                                   Grid.Row="0"
+                                   Grid.ColumnSpan="2"
+                                   Foreground="WhiteSmoke"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Center" />
+                        <Grid Grid.Row="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="2*" />
+                                <RowDefinition Height="1*" />
+                            </Grid.RowDefinitions>
+
+                            <Image x:Name="side_panel_bulb_img"
+                                   Grid.Row="0"
+                                   Margin="5"
+                                   Source="/img/Bulb_b.png">
+                            </Image>
+                            <TextBlock x:Name="lightInfo"
+                                       FontSize="30"
+                                       Text="a"
+                                       Grid.Row="1"
+                                       Foreground="#A39C9C"
+                                       VerticalAlignment="Stretch"
+                                       TextAlignment="Center"
+                                       HorizontalAlignment="Center" />
+
+                        </Grid>
+                        <Grid Grid.Row="2">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="2*" />
+                                <RowDefinition Height="1*" />
+                            </Grid.RowDefinitions>
+
+                            <Image x:Name="side_panel_socket_img"
+                                   Grid.Row="0"
+                                   Margin=" 10"
+                                   Source="/img/Socket_b.png">
+                            </Image>
+                            <TextBlock x:Name="socketInfo"
+                                       FontSize="30"
+                                       Text="b"
+                                       Grid.Row="1"
+                                       Foreground="#A39C9C"
+                                       VerticalAlignment="Stretch"
+                                       TextAlignment="Center"
+                                       HorizontalAlignment="Center" />
+
+                        </Grid>
+                        <Border x:Name="CogBorder"
+                                Grid.Column="1"
+                                Grid.Row="3"
+                                Margin="10"
+                                CornerRadius="8"
+                                Background="Transparent"
+                                BorderBrush="#ddd8d8"
+                                BorderThickness="2"
+                                MouseDown="CogBorder_MouseDown">
+                            <Image x:Name="cogIcon"
+                                   Source="/img/cog.png">
+                            </Image>
+                            <Border.Style>
+                                <Style TargetType="Border">
+                                    <Setter Property="BorderBrush"
+                                            Value="#A39C9C" />
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver"
+                                                 Value="True">
+                                            <Trigger.EnterActions>
+                                                <BeginStoryboard HandoffBehavior="SnapshotAndReplace">
+                                                    <Storyboard>
+                                                        <ColorAnimation Duration="0:0:0.3"
+                                                                        To="#A39C9C"
+                                                                        Storyboard.TargetProperty="BorderBrush.Color" />
+                                                    </Storyboard>
+                                                </BeginStoryboard>
+                                            </Trigger.EnterActions>
+                                            <Trigger.ExitActions>
+                                                <BeginStoryboard HandoffBehavior="SnapshotAndReplace">
+                                                    <Storyboard>
+                                                        <ColorAnimation Duration="0:0:0.3"
+                                                                        To="#ddd8d8 "
+                                                                        Storyboard.TargetProperty="BorderBrush.Color" />
+                                                    </Storyboard>
+                                                </BeginStoryboard>
+                                            </Trigger.ExitActions>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Border.Style>
+                        </Border>
+                    </Grid>
+
+                    <Grid x:Name="sidePanel_settings"
+                          Visibility="Hidden"
+                          Margin="0,0,0,12">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="65" />
+                            <RowDefinition Height="1*" />
+                            <RowDefinition Height="2*" />
+                            <RowDefinition Height="50" />
+                            <RowDefinition Height="40" />
+                        </Grid.RowDefinitions>
+
+                        <Border x:Name="Headder_settings"
+                                CornerRadius="10,10,0,0"
+                                Background="#B6D461" />
+                        <TextBlock x:Name="RoomName_settings"
+                                   FontSize="25"
+                                   Text="SETTINGS"
+                                   TextAlignment="Center"
+                                   FontWeight="Bold"
+                                   Grid.Row="0"
+                                   Grid.ColumnSpan="2"
+                                   Foreground="WhiteSmoke"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Center" />
+
+                        <Border x:Name="BorderAddRoom"
+                                Grid.Row="1"
+                                Margin="10"
+                                CornerRadius="8"
+                                Background="#A39C9C"
+                                MouseDown="CreateNewRoom_MouseDown">
+                            <TextBlock x:Name="AddRoomLabel"
+                                       FontSize="20"
+                                       Text="ADD ROOM"
+                                       TextAlignment="Center"
+                                       FontWeight="Bold"
+                                       Grid.Row="0"
+                                       Grid.ColumnSpan="2"
+                                       Foreground="WhiteSmoke"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Center" />
+                        </Border>
+
+                        <Border x:Name="BorderSave"
+                                Grid.Row="3"
+                                Margin="10,2"
+                                CornerRadius="8"
+                                Background="Transparent"
+                                BorderBrush="#ddd8d8"
+                                BorderThickness="2"
+                                MouseDown="BorderSave_MouseDown">
+                            <TextBlock x:Name="SaveLabel"
+                                       FontSize="25"
+                                       Text="SAVE"
+                                       TextAlignment="Center"
+                                       FontWeight="Normal"
+                                       Grid.Row="0"
+                                       Grid.ColumnSpan="2"
+                                       Foreground="#A39C9C"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Center" />
+                            <Border.Style>
+                                <Style TargetType="Border">
+                                    <Setter Property="BorderBrush"
+                                            Value="Transparent" />
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver"
+                                                 Value="True">
+                                            <Trigger.EnterActions>
+                                                <BeginStoryboard HandoffBehavior="SnapshotAndReplace">
+                                                    <Storyboard>
+                                                        <ColorAnimation Duration="0:0:0.3"
+                                                                        To="#A39C9C"
+                                                                        Storyboard.TargetProperty="BorderBrush.Color" />
+                                                    </Storyboard>
+                                                </BeginStoryboard>
+                                            </Trigger.EnterActions>
+                                            <Trigger.ExitActions>
+                                                <BeginStoryboard HandoffBehavior="SnapshotAndReplace">
+                                                    <Storyboard>
+                                                        <ColorAnimation Duration="0:0:0.3"
+                                                                        To="#ddd8d8"
+                                                                        Storyboard.TargetProperty="BorderBrush.Color" />
+                                                    </Storyboard>
+                                                </BeginStoryboard>
+                                            </Trigger.ExitActions>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Border.Style>
+                        </Border>
+                        <Border x:Name="BorderDiscard"
+                                Grid.Row="4"
+                                Margin="10,2"
+                                CornerRadius="8"
+                                Background="Transparent"
+                                BorderThickness="2"
+                                MouseDown="BorderDiscard_MouseDown">
+                            <TextBlock x:Name="Discard_label"
+                                       FontSize="25"
+                                       Text="DISCARD"
+                                       TextAlignment="Center"
+                                       FontWeight="Normal"
+                                       Grid.Row="0"
+                                       Grid.ColumnSpan="2"
+                                       Foreground="#A39C9C"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Center" />
+                            <Border.Style>
+                                <Style TargetType="Border">
+                                    <Setter Property="BorderBrush"
+                                            Value="Transparent" />
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver"
+                                                 Value="True">
+                                            <Trigger.EnterActions>
+                                                <BeginStoryboard HandoffBehavior="SnapshotAndReplace">
+                                                    <Storyboard>
+                                                        <ColorAnimation Duration="0:0:0.3"
+                                                                        To="#A39C9C"
+                                                                        Storyboard.TargetProperty="BorderBrush.Color" />
+                                                    </Storyboard>
+                                                </BeginStoryboard>
+                                            </Trigger.EnterActions>
+                                            <Trigger.ExitActions>
+                                                <BeginStoryboard HandoffBehavior="SnapshotAndReplace">
+                                                    <Storyboard>
+                                                        <ColorAnimation Duration="0:0:0.3"
+                                                                        To="Transparent"
+                                                                        Storyboard.TargetProperty="BorderBrush.Color" />
+                                                    </Storyboard>
+                                                </BeginStoryboard>
+                                            </Trigger.ExitActions>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Border.Style>
+                        </Border>
+                    </Grid>
+
+                    <Grid x:Name="sidePanel_room"
+                          Margin="0,0,0,5"
+                          Visibility="Hidden">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="65" />
+                            <RowDefinition Height="3*" />
+                            <RowDefinition Height="3*" />
+                            <RowDefinition Height="2*" />
+                        </Grid.RowDefinitions>
+
+                        <Border x:Name="Headder_room"
+                                CornerRadius="10,10,0,0"
+                                Background="#B6D461" />
+                        <TextBlock x:Name="RoomName_room"
+                                   FontSize="25"
+                                   Text="ROOM"
+                                   TextAlignment="Center"
+                                   FontWeight="Bold"
+                                   Grid.Row="0"
+                                   Grid.ColumnSpan="2"
+                                   Foreground="WhiteSmoke"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Center" />
+
+                        <Grid Grid.Row="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="2*" />
+                                <RowDefinition Height="1*" />
+                            </Grid.RowDefinitions>
+
+                            <Image x:Name="side_panel_bulb_room_img"
+                                   Grid.Row="0"
+                                   Margin="5"
+                                   Source="/img/Bulb_b.png">
+                            </Image>
+                            <TextBlock x:Name="bulbInfo_room"
+                                       FontSize="30"
+                                       Text="a"
+                                       Grid.Row="1"
+                                       Foreground="#A39C9C"
+                                       VerticalAlignment="Stretch"
+                                       TextAlignment="Center"
+                                       HorizontalAlignment="Center" />
+
+                        </Grid>
+                        <Grid Grid.Row="2">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="2*" />
+                                <RowDefinition Height="1*" />
+                            </Grid.RowDefinitions>
+
+                            <Image x:Name="side_panel_socket_room_img"
+                                   Grid.Row="0"
+                                   Margin=" 10"
+                                   Source="/img/Socket_b.png">
+                            </Image>
+                            <TextBlock x:Name="socketInfo_room"
+                                       FontSize="30"
+                                       Text="b"
+                                       Grid.Row="1"
+                                       Foreground="#A39C9C"
+                                       VerticalAlignment="Stretch"
+                                       TextAlignment="Center"
+                                       HorizontalAlignment="Center" />
+
+                        </Grid>
+
+
+                        <Grid Grid.Row="4">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Border x:Name="CogBorder_room"
+                                    Grid.Column="1"
+                                    Margin="10"
+                                    CornerRadius="8"
+                                    Background="Transparent"
+                                    BorderBrush="#ddd8d8"
+                                    BorderThickness="2"
+                                    MouseDown="CogBorder_room_MouseDown">
+                                <Image  Margin="-2"
+                                        Source="/img/cog.png">
+                                </Image>
+                                <Border.Style>
+                                    <Style TargetType="Border">
+                                        <Setter Property="BorderBrush"
+                                                Value="#A39C9C" />
+                                        <Style.Triggers>
+                                            <Trigger Property="IsMouseOver"
+                                                     Value="True">
+                                                <Trigger.EnterActions>
+                                                    <BeginStoryboard HandoffBehavior="SnapshotAndReplace">
+                                                        <Storyboard>
+                                                            <ColorAnimation Duration="0:0:0.3"
+                                                                            To="#A39C9C"
+                                                                            Storyboard.TargetProperty="BorderBrush.Color" />
+                                                        </Storyboard>
+                                                    </BeginStoryboard>
+                                                </Trigger.EnterActions>
+                                                <Trigger.ExitActions>
+                                                    <BeginStoryboard HandoffBehavior="SnapshotAndReplace">
+                                                        <Storyboard>
+                                                            <ColorAnimation Duration="0:0:0.3"
+                                                                            To="#ddd8d8 "
+                                                                            Storyboard.TargetProperty="BorderBrush.Color" />
+                                                        </Storyboard>
+                                                    </BeginStoryboard>
+                                                </Trigger.ExitActions>
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Border.Style>
+                            </Border>
+                            <Border x:Name="exit_border"
+                                    Grid.Column="0"
+                                    Margin="10"
+                                    CornerRadius="8"
+                                    Background="Transparent"
+                                    BorderBrush="#ddd8d8"
+                                    BorderThickness="2"
+                                    MouseDown="exit_border_MouseDown">
+                                <!--
+                                <Image  Margin="-2"
+                                        Source="/img/cog.png">
+                                </Image>
+                                -->
+                                <Path Data="M 410.312 454.729 151.767 244.996 410.312 35.271 381.693 0 79.688 244.996 381.693 490 Z"
+                                      Fill="#A39C9C"
+                                      Stretch="Fill"
+                                      Height="28"
+                                      Width="15" />
+                                <Border.Style>
+                                    <Style TargetType="Border">
+                                        <Setter Property="BorderBrush"
+                                                Value="#A39C9C" />
+                                        <Style.Triggers>
+                                            <Trigger Property="IsMouseOver"
+                                                     Value="True">
+                                                <Trigger.EnterActions>
+                                                    <BeginStoryboard HandoffBehavior="SnapshotAndReplace">
+                                                        <Storyboard>
+                                                            <ColorAnimation Duration="0:0:0.3"
+                                                                            To="#A39C9C"
+                                                                            Storyboard.TargetProperty="BorderBrush.Color" />
+                                                        </Storyboard>
+                                                    </BeginStoryboard>
+                                                </Trigger.EnterActions>
+                                                <Trigger.ExitActions>
+                                                    <BeginStoryboard HandoffBehavior="SnapshotAndReplace">
+                                                        <Storyboard>
+                                                            <ColorAnimation Duration="0:0:0.3"
+                                                                            To="#ddd8d8 "
+                                                                            Storyboard.TargetProperty="BorderBrush.Color" />
+                                                        </Storyboard>
+                                                    </BeginStoryboard>
+                                                </Trigger.ExitActions>
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Border.Style>
+                            </Border>
+                        </Grid>
+
+                        <!--
+                        <Border x:Name="BorderAddRoom"
+                                Grid.Row="1"
+                                Margin="10"
+                                CornerRadius="8"
+                                Background="#A39C9C"
+                                MouseDown="AddRoom">
+                            <TextBlock x:Name="AddRoomLabel"
+                                       FontSize="20"
+                                       Text="ADD ROOM"
+                                       TextAlignment="Center"
+                                       FontWeight="Bold"
+                                       Grid.Row="0"
+                                       Grid.ColumnSpan="2"
+                                       Foreground="WhiteSmoke"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Center" />
+                        </Border>
+                        <Border x:Name="BorderSave"
+                                Grid.Row="3"
+                                Margin="10"
+                                CornerRadius="8"
+                                Background="Transparent"
+                                BorderBrush="#ddd8d8"
+                                BorderThickness="2"
+                                MouseDown="BorderSave_MouseDown">
+                            <TextBlock x:Name="SaveLabel"
+                                       FontSize="25"
+                                       Text="SAVE"
+                                       TextAlignment="Center"
+                                       FontWeight="Normal"
+                                       Grid.Row="0"
+                                       Grid.ColumnSpan="2"
+                                       Foreground="#A39C9C"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Center" />
+                            <Border.Style>
+                                <Style TargetType="Border">
+                                    <Setter Property="BorderBrush"
+                                            Value="#0066FF" />
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver"
+                                                 Value="True">
+                                            <Trigger.EnterActions>
+                                                <BeginStoryboard HandoffBehavior="SnapshotAndReplace">
+                                                    <Storyboard>
+                                                        <ColorAnimation Duration="0:0:0.3"
+                                                                        To="#A39C9C"
+                                                                        Storyboard.TargetProperty="BorderBrush.Color" />
+                                                    </Storyboard>
+                                                </BeginStoryboard>
+                                            </Trigger.EnterActions>
+                                            <Trigger.ExitActions>
+                                                <BeginStoryboard HandoffBehavior="SnapshotAndReplace">
+                                                    <Storyboard>
+                                                        <ColorAnimation Duration="0:0:0.3"
+                                                                        To="#ddd8d8"
+                                                                        Storyboard.TargetProperty="BorderBrush.Color" />
+                                                    </Storyboard>
+                                                </BeginStoryboard>
+                                            </Trigger.ExitActions>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Border.Style>
+                        </Border>
+                        <Border x:Name="BorderDiscard"
+                                Grid.Row="4"
+                                Margin="10,2"
+                                CornerRadius="8"
+                                Background="Transparent"
+                                BorderThickness="2"
+                                MouseDown="BorderDiscard_MouseDown">
+                            <TextBlock x:Name="Discard_label"
+                                       FontSize="25"
+                                       Text="DISCARD"
+                                       TextAlignment="Center"
+                                       FontWeight="Normal"
+                                       Grid.Row="0"
+                                       Grid.ColumnSpan="2"
+                                       Foreground="#A39C9C"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Center" />
+                            <Border.Style>
+                                <Style TargetType="Border">
+                                    <Setter Property="BorderBrush"
+                                            Value="#0066FF" />
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver"
+                                                 Value="True">
+                                            <Trigger.EnterActions>
+                                                <BeginStoryboard HandoffBehavior="SnapshotAndReplace">
+                                                    <Storyboard>
+                                                        <ColorAnimation Duration="0:0:0.3"
+                                                                        To="#A39C9C"
+                                                                        Storyboard.TargetProperty="BorderBrush.Color" />
+                                                    </Storyboard>
+                                                </BeginStoryboard>
+                                            </Trigger.EnterActions>
+                                            <Trigger.ExitActions>
+                                                <BeginStoryboard HandoffBehavior="SnapshotAndReplace">
+                                                    <Storyboard>
+                                                        <ColorAnimation Duration="0:0:0.3"
+                                                                        To="Transparent"
+                                                                        Storyboard.TargetProperty="BorderBrush.Color" />
+                                                    </Storyboard>
+                                                </BeginStoryboard>
+                                            </Trigger.ExitActions>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Border.Style>
+                        </Border>
+                        -->
+                    </Grid>
+
+                    <Grid x:Name="sidePanel_room_settings"
+                          Visibility="Visible"
+                          Margin="0,0,0,12">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="65" />
+                            <RowDefinition Height="66" />
+                            <RowDefinition Height="0.5*" />
+                            <RowDefinition Height="50" />
+                            <RowDefinition Height="40" />
+                        </Grid.RowDefinitions>
+
+                        <Border x:Name="Headder_room_settings"
+                                CornerRadius="10,10,0,0"
+                                Background="#B6D461" />
+                        <TextBox x:Name="RoomName_room_settings"
+                                 FontSize="25"
+                                 Text="SETTINGS"
+                                 TextAlignment="Center"
+                                 FontWeight="Bold"
+                                 Grid.Row="0"
+                                 Grid.ColumnSpan="2"
+                                 Foreground="White"
+                                 IsEnabled="False"
+                                 Background="Transparent"
+                                 VerticalAlignment="Center"
+                                 HorizontalAlignment="Center" />
+                        <Border x:Name="ItemSetupBorder"
+                                Grid.Row="1"
+                                Grid.RowSpan="2"
+                                Visibility="Hidden"
+                                Margin="10"
+                                Padding="8"
+                                CornerRadius="7"
+                                BorderBrush="#A39C9C"
+                                BorderThickness="1">
+
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="40" />
+                                    <RowDefinition Height="40" />
+                                    <RowDefinition Height="3*" />
+                                </Grid.RowDefinitions>
+
+                                <TextBox Grid.Row="0"
+                                         x:Name="newItemName"
+                                         HorizontalAlignment="Stretch"
+                                         VerticalAlignment="Stretch"
+                                         VerticalContentAlignment="Center"
+                                         HorizontalContentAlignment="Center"
+                                         Margin="2,2,2,8"
+                                         Text="Jmeno">
+                                    <TextBox.Resources>
+                                        <Style TargetType="{x:Type Border}">
+                                            <Setter Property="CornerRadius"
+                                                    Value="7" />
+                                        </Style>
+                                    </TextBox.Resources>
+                                </TextBox>
+                                <TextBlock Grid.Row="0"
+                                           Text="Name*"
+                                           x:Name="newItemNameLabel"
+                                           Foreground="#A39C9C"
+                                           Margin="10,-5"
+                                           Background="White"
+                                           VerticalAlignment="Top"
+                                           HorizontalAlignment="Left"
+                                           FontSize="11" />
+                                <ComboBox Grid.Row="1"
+                                          x:Name="newItemType"
+                                          Margin="2,2,2,8"
+                                          HorizontalAlignment="Stretch"
+                                          VerticalAlignment="Stretch"
+                                          VerticalContentAlignment="Center"
+                                          HorizontalContentAlignment="Left"
+                                          IsReadOnly="True">
+                                    <ComboBoxItem Content="LIGHT" />
+                                    <ComboBoxItem Content="SOCKET" />
+                                    <ComboBoxItem Content="TEMP" />
+                                    <ComboBoxItem Content="HUMIDITY" />
+                                    <ComboBoxItem Content="CO2" />
+                                    <ComboBoxItem Content="UNKNOW" />
+
+                                </ComboBox>
+                                <TextBlock Grid.Row="1"
+                                           Text="Type*"
+                                           x:Name="newItemTypeLabel"
+                                           Foreground="#A39C9C"
+                                           Margin="10,-5"
+                                           Background="White"
+                                           VerticalAlignment="Top"
+                                           HorizontalAlignment="Left"
+                                           FontSize="11" />
+                                <Border Grid.Row="2"
+                                        Margin="3"
+                                        Padding="8,4"
+                                        CornerRadius="7"
+                                        BorderBrush="#A39C9C"
+                                        BorderThickness="1">
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*" />
+                                            <RowDefinition Height="*" />
+                                            <RowDefinition Height="*" />
+                                            <RowDefinition Height="*" />
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="30" />
+                                            <ColumnDefinition Width="2*" />
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Grid.Row="0"
+                                                   Text="Topic*"
+                                                   x:Name="newItemMqttToppicLabel"
+                                                   Foreground="#A39C9C"
+                                                   Margin="0"
+                                                   VerticalAlignment="Center"
+                                                   HorizontalAlignment="Left"
+                                                   FontSize="10" />
+                                        <TextBlock Grid.Row="1"
+                                                   Text="ON"
+                                                   Foreground="#A39C9C"
+                                                   Margin="0"
+                                                   VerticalAlignment="Center"
+                                                   HorizontalAlignment="Left"
+                                                   FontSize="10" />
+                                        <TextBlock Grid.Row="2"
+                                                   Text="OFF"
+                                                   Foreground="#A39C9C"
+                                                   Margin="0"
+                                                   VerticalAlignment="Center"
+                                                   HorizontalAlignment="Left"
+                                                   FontSize="10" />
+                                        <TextBlock Grid.Row="3"
+                                                   Text="READ"
+                                                   Foreground="#A39C9C"
+                                                   Margin="0"
+                                                   VerticalAlignment="Center"
+                                                   HorizontalAlignment="Left"
+                                                   FontSize="10" />
+                                        <TextBox Grid.Row="0"
+                                                 
+                                                 Grid.Column="1"
+                                                 Height="auto"
+                                                 x:Name="newItemMqttToppic"
+                                                 FontSize="11"
+                                                 TextWrapping="Wrap"
+                                                 HorizontalAlignment="Stretch"
+                                                 VerticalAlignment="Stretch"
+                                                 VerticalContentAlignment="Center"
+                                                 HorizontalContentAlignment="Center"
+                                                 Margin="0,0,0,2"
+                                                 BorderThickness="0,0,0,1"
+                                                 Text="Jmeno">
+
+                                        </TextBox>
+                                        <TextBox Grid.Row="1"
+                                                 Grid.Column="1"
+                                                 x:Name="newItemMqttOk"
+                                                 Height="auto"
+                                                 FontSize="11"
+                                                 TextWrapping="Wrap"
+                                                 HorizontalAlignment="Stretch"
+                                                 VerticalAlignment="Stretch"
+                                                 VerticalContentAlignment="Center"
+                                                 HorizontalContentAlignment="Center"
+                                                 Margin="0,0,0,2"
+                                                 BorderThickness="0,0,0,1"
+                                                 Text="Jmeno">
+
+                                        </TextBox>
+                                        <TextBox Grid.Row="2"
+                                                 Grid.Column="1"
+                                                 x:Name="newItemMqttOff"
+                                                 FontSize="11"
+                                                 Height="auto"
+                                                 TextWrapping="Wrap"
+                                                 HorizontalAlignment="Stretch"
+                                                 VerticalAlignment="Stretch"
+                                                 VerticalContentAlignment="Center"
+                                                 HorizontalContentAlignment="Center"
+                                                 Margin="0,0,0,2"
+                                                 BorderThickness="0,0,0,1"
+                                                 Text="Jmeno">
+
+                                        </TextBox>
+                                        <TextBox Grid.Row="3"
+                                                 Grid.Column="1"
+                                                 x:Name="newItemMqttRead"
+                                                 Height="auto"
+                                                 FontSize="11"
+                                                 TextWrapping="Wrap"
+                                                 HorizontalAlignment="Stretch"
+                                                 VerticalAlignment="Stretch"
+                                                 VerticalContentAlignment="Center"
+                                                 HorizontalContentAlignment="Center"
+                                                 Margin="0,0,0,2"
+                                                 BorderThickness="0,0,0,1"
+                                                 Text="Jmeno">
+
+                                        </TextBox>
+
+
+                                    </Grid>
+                                </Border>
+                                <TextBlock Grid.Row="2"
+                                           Text="MQTT"
+                                           FontWeight="Medium"
+                                           Foreground="#A39C9C"
+                                           Margin="10,-5"
+                                           Background="White"
+                                           VerticalAlignment="Top"
+                                           HorizontalAlignment="Left"
+                                           FontSize="11" />
+                            </Grid>
+                        </Border>
+
+                        <Border x:Name="BorderAddLight"
+                                Grid.Row="1"
+                                Margin="10,10,10,5"
+                                CornerRadius="8"
+                                Background="#A39C9C"
+                                MouseDown="BorderAddLight_MouseDown">
+                            <TextBlock x:Name="AddLightLabel"
+                                       FontSize="18"
+                                       Text="ADD ITEM"
+                                       TextAlignment="Center"
+                                       FontWeight="Bold"
+                                       Grid.Row="0"
+                                       Grid.ColumnSpan="2"
+                                       Foreground="WhiteSmoke"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Center" />
+                        </Border>
+                        <Border x:Name="BorderSave_room"
+                                Grid.Row="3"
+                                Margin="10,2"
+                                CornerRadius="8"
+                                Background="Transparent"
+                                BorderBrush="#ddd8d8"
+                                BorderThickness="2"
+                                MouseDown="BorderSave_room_MouseDown">
+                            <TextBlock x:Name="SaveLabel_room"
+                                       FontSize="25"
+                                       Text="SAVE"
+                                       TextAlignment="Center"
+                                       FontWeight="Normal"
+                                       Grid.Row="0"
+                                       Grid.ColumnSpan="2"
+                                       Foreground="#A39C9C"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Center" />
+                            <Border.Style>
+                                <Style TargetType="Border">
+                                    <Setter Property="BorderBrush"
+                                            Value="Transparent" />
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver"
+                                                 Value="True">
+                                            <Trigger.EnterActions>
+                                                <BeginStoryboard HandoffBehavior="SnapshotAndReplace">
+                                                    <Storyboard>
+                                                        <ColorAnimation Duration="0:0:0.3"
+                                                                        To="#A39C9C"
+                                                                        Storyboard.TargetProperty="BorderBrush.Color" />
+                                                    </Storyboard>
+                                                </BeginStoryboard>
+                                            </Trigger.EnterActions>
+                                            <Trigger.ExitActions>
+                                                <BeginStoryboard HandoffBehavior="SnapshotAndReplace">
+                                                    <Storyboard>
+                                                        <ColorAnimation Duration="0:0:0.3"
+                                                                        To="#ddd8d8"
+                                                                        Storyboard.TargetProperty="BorderBrush.Color" />
+                                                    </Storyboard>
+                                                </BeginStoryboard>
+                                            </Trigger.ExitActions>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Border.Style>
+                        </Border>
+                        <Border x:Name="BorderDiscard_room"
+                                Grid.Row="4"
+                                Margin="10,2"
+                                CornerRadius="8"
+                                Background="Transparent"
+                                BorderThickness="2"
+                                MouseDown="BorderDiscard_room_MouseDown">
+                            <TextBlock x:Name="Discard_label_room"
+                                       FontSize="25"
+                                       Text="DISCARD"
+                                       TextAlignment="Center"
+                                       FontWeight="Normal"
+                                       Grid.Row="0"
+                                       Grid.ColumnSpan="2"
+                                       Foreground="#A39C9C"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Center" />
+                            <Border.Style>
+                                <Style TargetType="Border">
+                                    <Setter Property="BorderBrush"
+                                            Value="Transparent" />
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver"
+                                                 Value="True">
+                                            <Trigger.EnterActions>
+                                                <BeginStoryboard HandoffBehavior="SnapshotAndReplace">
+                                                    <Storyboard>
+                                                        <ColorAnimation Duration="0:0:0.3"
+                                                                        To="#A39C9C"
+                                                                        Storyboard.TargetProperty="BorderBrush.Color" />
+                                                    </Storyboard>
+                                                </BeginStoryboard>
+                                            </Trigger.EnterActions>
+                                            <Trigger.ExitActions>
+                                                <BeginStoryboard HandoffBehavior="SnapshotAndReplace">
+                                                    <Storyboard>
+                                                        <ColorAnimation Duration="0:0:0.3"
+                                                                        To="Transparent"
+                                                                        Storyboard.TargetProperty="BorderBrush.Color" />
+                                                    </Storyboard>
+                                                </BeginStoryboard>
+                                            </Trigger.ExitActions>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Border.Style>
+                        </Border>
+                    </Grid>
+
+                </Grid>
+            </Border>
+        </Grid>
+
+    </Border>
+    <UserControl.Resources>
+        <Style x:Key="ComboBoxToggleButton"
+               TargetType="ToggleButton">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ToggleButton">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Border x:Name="Border"
+                                    Grid.ColumnSpan="2"
+                                    CornerRadius="0,8,8,0"
+                                    Background="#A39C9C"
+                                    BorderBrush="#A39C9C"
+                                    BorderThickness="1" />
+
+                            <Path x:Name="Arrow"
+                                  Fill="White"
+                                  Stroke="White"
+                                  HorizontalAlignment="Center"
+                                  VerticalAlignment="Center"
+                                  Data="M 0 0 L 4 4 L 8 0 Z" />
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="ComboBoxTextBoxStyle"
+               TargetType="{x:Type TextBox}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TextBox}">
+                        <Grid>
+                            <Border CornerRadius="5,0,0,5"
+                                    BorderThickness="1"
+                                    Background="{TemplateBinding Background}"
+                                    BorderBrush="#A39C9C">
+                                <ScrollViewer x:Name="PART_ContentHost" />
+                            </Border>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="{x:Type ComboBox}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ComboBox}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition MaxWidth="18" />
+                            </Grid.ColumnDefinitions>
+                            <TextBox Name="PART_EditableTextBox"
+                                     Style="{StaticResource ComboBoxTextBoxStyle}"
+                                     Padding="5,0,0,0"
+                                     Height="{TemplateBinding Height}" />
+                            <ToggleButton Grid.Column="1"
+                                          Margin="0"
+                                          Height="{TemplateBinding Height}"
+                                          Style="{StaticResource ComboBoxToggleButton}"
+                                          Focusable="False"
+                                          IsChecked="{Binding Path=IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
+                                          ClickMode="Press">
+                                <Path Grid.Column="1"
+                                      HorizontalAlignment="Center"
+                                      VerticalAlignment="Center"
+                                      Data="M 0 0 L 4 4 L 8 0 Z"
+                                      Fill="#A39C9C" />
+                            </ToggleButton>
+                            <ContentPresenter Name="ContentSite"
+                                              Content="{TemplateBinding SelectionBoxItem}"
+                                              ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
+                                              ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
+                                              VerticalAlignment="Center"
+                                              HorizontalAlignment="Left"
+                                              Margin="5,0,0,0" />
+                            <Popup Name="Popup"
+                                   Placement="Bottom"
+                                   IsOpen="{TemplateBinding IsDropDownOpen}"
+                                   AllowsTransparency="True"
+                                   Focusable="False"
+                                   PopupAnimation="Slide">
+                                <Grid Name="DropDown"
+                                      SnapsToDevicePixels="True"
+                                      MinWidth="{TemplateBinding ActualWidth}"
+                                      MaxHeight="{TemplateBinding MaxDropDownHeight}">
+                                    <Border x:Name="DropDownBorder"
+                                            BorderThickness="1,0,1,1"
+                                            CornerRadius="0,0,5,5"
+                                            Background="White"
+                                            BorderBrush="#A39C9C" />
+                                    <ScrollViewer Margin="4,6,4,6"
+                                                  SnapsToDevicePixels="True">
+                                        <StackPanel IsItemsHost="True"
+                                                    KeyboardNavigation.DirectionalNavigation="Contained" />
+                                    </ScrollViewer>
+                                </Grid>
+                            </Popup>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+
+</UserControl>
